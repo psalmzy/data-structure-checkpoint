@@ -1,0 +1,68 @@
+ALGORITHM task_1
+
+const
+  MAX_SIZE = 100; // Maximum size of the sets
+
+VAR
+  Set1, Set2: array[1..MAX_SIZE] of Integer;
+  Size1, Size2: Integer;
+  Sum: Integer;
+  i, j: Integer;
+  found: Boolean;
+BEGIN
+    // Read the sizes of the sets
+  Write('Enter the size of Set 1: ');
+  Readln(Size1);
+  Write('Enter the size of Set 2: ');
+  Readln(Size2);
+
+  // Read the elements of Set 1
+  Writeln('Enter the elements of Set 1:');
+  for i := 1 to Size1 do
+    Readln(Set1[i]);
+
+  // Read the elements of Set 2
+  Writeln('Enter the elements of Set 2:');
+  for i := 1 to Size2 do
+    Readln(Set2[i]);
+
+  // Initialize the sum
+  Sum := 0;
+
+  // Add distinct elements from Set 1 to the sum
+  for i := 1 to Size1 do
+  begin
+    found := False;
+    for j := 1 to Size2 do
+    begin
+      if Set1[i] = Set2[j] then
+      begin
+        found := True;
+        Break;
+      end;
+    end;
+    if not found then
+      Sum := Sum + Set1[i];
+  end;
+
+   // Add distinct elements from Set 2 to the sum
+  for i := 1 to Size2 do
+  begin
+    found := False;
+    for j := 1 to Size1 do
+    begin
+      if Set2[i] = Set1[j] then
+      begin
+        found := True;
+        Break;
+      end;
+    end;
+    if not found then
+      Sum := Sum + Set2[i];
+  end;
+
+  // Display the sum of distinct elements
+  Writeln('Sum of distinct elements: ', Sum);
+
+
+END

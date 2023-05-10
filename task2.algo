@@ -1,0 +1,53 @@
+program VectorOrthogonality;
+
+const
+  MAX_SIZE = 100; // Maximum size of the vectors
+
+type
+  Vector = array[1..MAX_SIZE] of Real; // Type definition for a vector
+
+var
+  n: Integer; // Number of vector pairs
+  v1, v2: Vector; // Arrays to store the vectors
+  i, j: Integer; // Loop variables
+
+// Procedure to calculate the dot product of two vectors
+procedure dot_product(const v1, v2: Vector; var ps: Real);
+var
+  k: Integer; // Loop variable
+begin
+  ps := 0; // Initialize the dot product sum to zero
+
+  // Calculate the dot product by multiplying corresponding elements and summing them
+  for k := 1 to MAX_SIZE do
+    ps := ps + (v1[k] * v2[k]);
+end;
+
+begin
+  Write('Enter the number of vector pairs: ');
+  Read(n);
+
+  for i := 1 to n do
+  begin
+    // Read the elements of the first vector
+    Write('Enter the elements of Vector 1 (separated by spaces):');
+    for j := 1 to MAX_SIZE do
+      Read(v1[j]);
+    Readln; // Move to the next line
+
+    // Read the elements of the second vector
+    Write('Enter the elements of Vector 2 (separated by spaces):');
+    for j := 1 to MAX_SIZE do
+      Read(v2[j]);
+    Readln; // Move to the next line
+
+    // Calculate the dot product of the two vectors
+    dot_product(v1, v2, ps);
+
+    // Check if the dot product is zero (indicating orthogonality)
+    if ps = 0 then
+      Write('The vectors are orthogonal.')
+    else
+      Write('The vectors are not orthogonal.');
+  end;
+end.
